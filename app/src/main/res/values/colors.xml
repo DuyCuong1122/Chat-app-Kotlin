@@ -1,5 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primaryColor">#4356B4</color>
+    <color name="secondaryColor">#3DCFCF</color>
+    <color name="greyColor">#D2D2D2</color>
+    <color name="blackColor">#000000</color>
+    <color name="whiteColor">#FFFFFF</color>
+    <color name="unableColor">#CACACA</color>
+    <color name="normalColor">#999999</color>
+    <color name="f6Color">#F6F6F6</color>
+    <color name="f67Color">#676767</color>
+    <color name="errorColor">#E02020</color>
+    <color name="successColor">#00C853</color>
+    <color name="warningColor">#FFAB00</color>
+    <color name="f99Color">#999999</color>
+    <color name="fefeeColor">#EFEEEE</color>
 </resources>

@@ -1,16 +1,21 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
     namespace = "com.example.chatappkotlin"
-    compileSdk = 34
+    compileSdk = 35
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.10" // Hoặc bản mới nhất
+    }
 
     defaultConfig {
         applicationId = "com.example.chatappkotlin"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 26
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -40,9 +45,13 @@ android {
 }
 
 dependencies {
+    implementation(libs.firebase.common.ktx)
+    implementation(libs.firebase.firestore)
     val composeBom = platform("androidx.compose:compose-bom:2025.01.01")
     implementation(composeBom)
     androidTestImplementation(composeBom)
+    implementation (platform(libs.firebase.bom))
+    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
