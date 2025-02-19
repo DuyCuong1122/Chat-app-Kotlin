@@ -92,6 +92,11 @@ fun MessageView() {
                 .background(color = Color.White)
 
         )
-        { }
+        {
+            Column {
+                for (i in 0..15) {
+                    MessageItem()}
+            }
+        }
     }
 }

@@ -15,18 +15,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.chatappkotlin.presentation.nav_graph.Route
 import kotlinx.coroutines.delay
 
 
 @Composable
-fun SplashScreen(onTimeout: () -> Unit) {
+fun SplashScreen(navController: NavController) {
     // Chạy hiệu ứng delay 3 giây trước khi chuyển màn hình
     LaunchedEffect(Unit) {
         delay(1000)
-        onTimeout()
+        val isLoggedIn = true // Kiểm tra trạng thái đăng nhập (thay bằng logic thực tế)
+
+        if (isLoggedIn) {
+            navController.navigate(Route.HomeScreen.route) {
+                popUpTo(Route.SplashScreen.route) { inclusive = true }
+            }
+        } else {
+            navController.navigate(Route.LoginScreen.route) {
+                popUpTo(Route.SplashScreen.route) { inclusive = true }
+            }
+        }
     }
 
     Box(

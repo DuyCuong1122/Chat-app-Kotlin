@@ -1,21 +1,18 @@
 package com.example.chatappkotlin
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.chatappkotlin.presentation.NextActivity
+import androidx.core.view.WindowCompat
+import com.example.chatappkotlin.presentation.nav_graph.AppNav
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        // Ensure this is called before setContent
+//        WindowCompat.setDecorFitsSystemWindows(window, true)
         setContent {
-            SplashScreen {
-                startActivity(Intent(this, NextActivity::class.java))
-                finish() // Kết thúc SplashScreen để tránh quay lại
-            }
+            AppNav()
         }
     }
 }
-

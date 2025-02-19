@@ -1,4 +1,4 @@
-package com.example.chatappkotlin.presentation
+package com.example.chatappkotlin.presentation.sign_in_up
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,21 +20,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.chatappkotlin.R
-import com.example.chatappkotlin.presentation.widget.CustomButtonSignInUp
+import com.example.chatappkotlin.presentation.nav_graph.Route
+import com.example.chatappkotlin.presentation.sign_in_up.widget.CustomButtonSignInUp
 import com.example.chatappkotlin.presentation.widget.CustomTextField
 import com.example.chatappkotlin.ui.theme.CustomTypography
 
-@Preview
 @Composable
-fun PreviewSignInView() {
-    SignInView(true)
-}
-
-@Composable
-fun SignInView(enable: Boolean) {
+fun SignInView(navController: NavController) {
     Column(
         modifier = Modifier
             .background(Color.White) // 🌟 Thêm background màu trắng
@@ -72,7 +68,7 @@ fun SignInView(enable: Boolean) {
             onValueChange = {},
             label = stringResource(id = R.string.password),
             suffixIcon = R.drawable.key,
-            )
+        )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = stringResource(id = R.string.forgot_password),
@@ -81,26 +77,28 @@ fun SignInView(enable: Boolean) {
         )
         Spacer(modifier = Modifier.height(48.dp))
         CustomButtonSignInUp(
-            enable = enable,
-            onClick = { /*TODO*/ },
+            enable = true,
+            onClick = { navController.navigate(Route.HomeScreen.route) },
             text = R.string.log_in
         )
         Spacer(modifier = Modifier.weight(1f))
-        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-            Text(
-                text = stringResource(id = R.string.no_account),
-                style = CustomTypography.Text14W700,
-            )
-            Spacer(modifier = Modifier.width(4.dp))
-            Text(
-                text = stringResource(id = R.string.register_now),
-                style = CustomTypography.Text14W700,
-            )
+        TextButton(
+            onClick = { navController.navigate(Route.RegisterScreen.route) },
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        ) {
+            Row {
+                Text(
+                    text = stringResource(id = R.string.no_account),
+                    style = CustomTypography.Text14W700,
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = stringResource(id = R.string.register_now),
+                    style = CustomTypography.Text14W700,
+                )
+            }
         }
-//    Spacer(modifier = Modifier.height(16.dp))
-//    Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
-//        Text(text = "Sign Up")
-//    }
+
 
     }
 }

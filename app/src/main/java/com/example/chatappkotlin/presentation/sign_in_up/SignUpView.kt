@@ -1,20 +1,15 @@
-package com.example.chatappkotlin.presentation
+package com.example.chatappkotlin.presentation.sign_in_up
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.Bottom
-import androidx.compose.ui.Alignment.Companion.Center
-import androidx.compose.ui.Alignment.Companion.Start
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -24,22 +19,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.chatappkotlin.R
-import com.example.chatappkotlin.presentation.widget.CustomButtonSignInUp
+import com.example.chatappkotlin.presentation.nav_graph.Route
+import com.example.chatappkotlin.presentation.sign_in_up.widget.CustomButtonSignInUp
 import com.example.chatappkotlin.presentation.widget.CustomTextField
 import com.example.chatappkotlin.ui.theme.CustomTypography
 
-@Preview
-@Composable
-fun PreviewSignUpView() {
-    SignUpView(onBackClick = {})
-}
+//@Preview
+//@Composable
+//fun PreviewSignUpView() {
+//    SignUpView()
+//}
 
 @Composable
-fun SignUpView(onBackClick: () -> Unit) {
+fun SignUpView(navController: NavController) {
     // 🏷 Trạng thái của form
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -59,7 +55,7 @@ fun SignUpView(onBackClick: () -> Unit) {
             .padding(start = 24.dp, top = 64.dp, end = 24.dp, bottom = 32.dp)
     ) {
         // Nút Back
-        BackButton(onBackClick = onBackClick)
+        BackButton(onBackClick = navController::popBackStack)
         Spacer(modifier = Modifier.height(48.dp))
 
         // Tiêu đề
@@ -97,6 +93,7 @@ fun SignUpView(onBackClick: () -> Unit) {
                 if (!usernameError && !emailError && !passwordError) {
                     // TODO: Xử lý đăng ký
                 }
+                navController.navigate(Route.LoginScreen.route)
             },
         )
         Spacer(modifier = Modifier.weight(1f))

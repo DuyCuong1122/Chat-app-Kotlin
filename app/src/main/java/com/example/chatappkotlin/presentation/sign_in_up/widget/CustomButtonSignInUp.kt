@@ -1,4 +1,4 @@
-package com.example.chatappkotlin.presentation.widget
+package com.example.chatappkotlin.presentation.sign_in_up.widget
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
