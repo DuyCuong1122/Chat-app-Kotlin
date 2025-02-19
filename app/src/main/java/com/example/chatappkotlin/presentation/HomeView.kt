@@ -2,13 +2,8 @@ package com.example.chatappkotlin.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import com.example.chatappkotlin.R
@@ -17,6 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,11 +39,20 @@ fun HomeView(navController: NavController) {
     )
 
     var selectedIndex by remember { mutableIntStateOf(0) }
+    val focusManager = LocalFocusManager.current // Quản lý focus
+
 
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.safeDrawing),
+            .windowInsetsPadding(WindowInsets.safeDrawing)
+            .pointerInput(Unit){
+                detectTapGestures(onTap = {
+                    focusManager.clearFocus() // Xóa focus khi người dùng bấm vào màn hình
+                })
+            },
+        topBar = {
+            },
         bottomBar = {
             Box(
                 modifier = Modifier
@@ -110,6 +116,7 @@ fun HomeView(navController: NavController) {
         }
     }
 }
+
 @Composable
 fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int) {
     when (selectedIndex) {

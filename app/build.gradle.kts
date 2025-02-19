@@ -8,6 +8,10 @@ android {
     namespace = "com.example.chatappkotlin"
     compileSdk = 35
 
+    buildFeatures {
+        compose = true
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10" // Hoặc bản mới nhất
     }
@@ -39,9 +43,7 @@ android {
         jvmTarget = "1.8"
     }
 
-    buildFeatures {
-        compose = true
-    }
+
 }
 
 dependencies {
