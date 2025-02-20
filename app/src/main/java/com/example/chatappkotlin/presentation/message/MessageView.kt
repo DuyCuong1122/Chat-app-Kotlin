@@ -1,4 +1,5 @@
 package com.example.chatappkotlin.presentation.message
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -83,7 +84,7 @@ fun MessageView() {
                     }
                 }
                 Spacer(modifier = Modifier.height(24.dp))
-                CustomSearchBar(placeholderText = stringResource(id =  R.string.search_message))
+                CustomSearchBar(placeholderText = stringResource(id = R.string.search_message))
             }
         }
         Box(
@@ -96,10 +97,18 @@ fun MessageView() {
                 .padding(top = 18.dp)
         )
         {
-            Column(modifier = Modifier.verticalScroll(scrollState)) {
-                for (i in 0..10) {
-                    MessageItem()
-                }
+
+//            Column(modifier = Modifier.verticalScroll(scrollState)) {
+//                for (i in 0..10) {
+//                    MessageItem()
+//                }
+//            }
+            Column(modifier = Modifier.padding(top = 4.dp, start = 12.dp, end = 12.dp)) {
+                Text(
+                    text = stringResource(id = R.string.message),
+                    style = CustomTypography.Text18W500,
+                    color = colorResource(id = R.color.f99Color)
+                )
             }
         }
     }

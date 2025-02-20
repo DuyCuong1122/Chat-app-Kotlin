@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.compose.compiler)
+    id("kotlin-kapt") // Thêm dòng này để sử dụng kapt
+
+
 }
 
 android {
@@ -13,7 +17,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10" // Hoặc bản mới nhất
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
 
     defaultConfig {
@@ -45,7 +49,6 @@ android {
 
 
 }
-
 dependencies {
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.firestore)
@@ -74,4 +77,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.dagger)
+    implementation(libs.hilt.android)
+
+    kapt(libs.hilt.compiler)
 }
+
