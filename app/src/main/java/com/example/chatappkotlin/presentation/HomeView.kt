@@ -51,8 +51,6 @@ fun HomeView(navController: NavController) {
                     focusManager.clearFocus() // Xóa focus khi người dùng bấm vào màn hình
                 })
             },
-        topBar = {
-            },
         bottomBar = {
             Box(
                 modifier = Modifier

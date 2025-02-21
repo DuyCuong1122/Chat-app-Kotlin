@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.compose.compiler)
-    id("kotlin-kapt") // Thêm dòng này để sử dụng kapt
+    id("com.google.devtools.ksp")
 
 
 }
@@ -77,9 +77,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation (libs.androidx.room.runtime)
+    ksp (libs.androidx.room.compiler)
     implementation(libs.dagger)
     implementation(libs.hilt.android)
 
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 }
 
