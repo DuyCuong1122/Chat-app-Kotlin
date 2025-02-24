@@ -96,12 +96,6 @@ fun MessageView() {
                 .padding(top = 18.dp)
         )
         {
-
-//            Column(modifier = Modifier.verticalScroll(scrollState)) {
-//                for (i in 0..10) {
-//                    MessageItem()
-//                }
-//            }
             Column(modifier = Modifier.padding(top = 4.dp, start = 12.dp, end = 12.dp)) {
                 Text(
                     text = stringResource(id = R.string.message),

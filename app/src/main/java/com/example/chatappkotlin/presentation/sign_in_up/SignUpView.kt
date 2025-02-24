@@ -25,6 +25,7 @@ import androidx.navigation.NavController
 import com.example.chatappkotlin.R
 import com.example.chatappkotlin.presentation.nav_graph.Route
 import com.example.chatappkotlin.presentation.sign_in_up.widget.CustomButtonSignInUp
+import com.example.chatappkotlin.presentation.widget.CustomCheckBox
 import com.example.chatappkotlin.presentation.widget.CustomTextField
 import com.example.chatappkotlin.ui.theme.CustomTypography
 
@@ -111,31 +112,6 @@ fun SignUpView(navController: NavController) {
     }
 }
 
-@Composable
-fun CircularCheckbox(
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
-) {
-    Box(
-        modifier = Modifier
-            .size(24.dp) // Kích thước của Checkbox
-            .clip(CircleShape) // Làm tròn
-            .background(if (checked) colorResource(id = R.color.primaryColor) else Color.White)
-            .border(2.dp, colorResource(id = R.color.primaryColor), CircleShape)
-            .clickable { onCheckedChange(!checked) },
-        // Toggle khi click
-        contentAlignment = Alignment.Center
-    ) {
-        if (checked) {
-            Icon(
-                imageVector = Icons.Default.Check, // Icon checkmark
-                contentDescription = "Checked",
-                tint = Color.White,
-                modifier = Modifier.size(16.dp)
-            )
-        }
-    }
-}
 
 @Composable
 fun FormSignUp(
@@ -206,7 +182,7 @@ fun PoliciesAndTerm(enableButton: Boolean, onCheckedChange: (Boolean) -> Unit) {
         verticalAlignment = Alignment.CenterVertically, modifier = Modifier
             .fillMaxWidth()
     ) {
-        CircularCheckbox(
+        CustomCheckBox(
             checked = enableButton,
             onCheckedChange = onCheckedChange
         )

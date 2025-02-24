@@ -27,7 +27,7 @@ fun SplashScreen(navController: NavController) {
     // Chạy hiệu ứng delay 3 giây trước khi chuyển màn hình
     LaunchedEffect(Unit) {
         delay(1000)
-        val isLoggedIn = true // Kiểm tra trạng thái đăng nhập (thay bằng logic thực tế)
+        val isLoggedIn = false // Kiểm tra trạng thái đăng nhập (thay bằng logic thực tế)
 
         if (isLoggedIn) {
             navController.navigate(Route.HomeScreen.route) {

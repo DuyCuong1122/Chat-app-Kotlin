@@ -14,8 +14,10 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -94,25 +96,22 @@ fun ChatView(name: String = "Cuong", time: String = "Today") {
                 .background(color = Color.White)
                 .padding(top = 18.dp, start = 12.dp, end = 12.dp, bottom = 16.dp)
         ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                reverseLayout = true // Cuộn từ dưới lên
+            Column(
+                modifier = Modifier.fillMaxSize()
             ) {
-                items(10) { index -> // Giả lập danh sách tin nhắn
-                    LeftChatWidget(MessageContent(content = "adasdasdad"), isLast = index == 0)
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(1f) // Chiếm hết phần trống, chừa chỗ cho input
+                        .fillMaxWidth(),
+                    reverseLayout = true // Cuộn từ dưới lên
+                ) {
+                    items(10) { index -> // Giả lập danh sách tin nhắn
+                        LeftChatWidget(MessageContent(content = "hehe $index"), isLast = index == 0)
+                    }
                 }
+                MessageInputField() // Luôn hiển thị phía dưới
             }
-            Spacer(modifier = Modifier.height(8.dp))
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.BottomCenter) // Cố định xuống dưới
-                    .background(Color.White)
-
-            ) {
-                MessageInputField()
-            }
-         }
+        }
 
 
     }
@@ -125,15 +124,28 @@ fun MessageInputField() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(52.dp)
-            .background(Color.Black)
-            .padding(8.dp),
+            .height(52.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        Box(
+            modifier = Modifier
+                .size(52.dp)
+                .clip(shape = CircleShape) // Đảm bảo là hình tròn
+                .background(color = colorResource(id = R.color.f6Color))
+                .wrapContentSize(Alignment.Center) // Căn giữa chính xác
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_album),
+                contentDescription = "Thêm ảnh",
+                modifier = Modifier.background(color = colorResource(id = R.color.f99Color))
+            )
+        }
+        Spacer(modifier = Modifier.width(10.dp))
         OutlinedTextField(
             value = message,
             onValueChange = { message = it },
             modifier = Modifier
+                .clip(RoundedCornerShape(size = 30.dp))
                 .weight(1f)
                 .height(50.dp),
             placeholder = { Text("Nhập tin nhắn...") }
@@ -146,7 +158,6 @@ fun MessageInputField() {
             contentDescription = "Gửi",
             modifier = Modifier
                 .size(40.dp)
-                .background(Color(0xFF4CAF50), RoundedCornerShape(50))
                 .padding(8.dp)
         )
     }
