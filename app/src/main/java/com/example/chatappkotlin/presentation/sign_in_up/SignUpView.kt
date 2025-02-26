@@ -36,11 +36,12 @@ import com.example.chatappkotlin.ui.theme.CustomTypography
 //}
 
 @Composable
-fun SignUpView(navController: NavController) {
+fun SignUpView(authViewModel: AuthViewModel, navController: NavController) {
     // 🏷 Trạng thái của form
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val registerState by authViewModel.authState.collectAsState()
 
     // 🛑 Trạng thái lỗi
     var usernameError by remember { mutableStateOf(false) }
@@ -84,7 +85,6 @@ fun SignUpView(navController: NavController) {
         Spacer(modifier = Modifier.height(48.dp))
         // Nút Đăng Ký
         CustomButtonSignInUp(
-            enable = true,
             text = R.string.register,
             onClick = {
                 usernameError = username.isBlank()
@@ -92,10 +92,11 @@ fun SignUpView(navController: NavController) {
                 passwordError = password.length < 6
 
                 if (!usernameError && !emailError && !passwordError) {
-                    // TODO: Xử lý đăng ký
+                    authViewModel.signUpMethod(username, email, password)
                 }
                 navController.navigate(Route.LoginScreen.route)
             },
+            enable = !usernameError && !emailError && !passwordError,
         )
         Spacer(modifier = Modifier.weight(1f))
         Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {

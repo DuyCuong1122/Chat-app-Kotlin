@@ -52,6 +52,7 @@ android {
 dependencies {
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth.ktx)
     val composeBom = platform("androidx.compose:compose-bom:2025.01.01")
     implementation(composeBom)
     androidTestImplementation(composeBom)
@@ -63,7 +64,7 @@ dependencies {
 
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.test.manifest)
-
+    implementation(libs.firebase.auth)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

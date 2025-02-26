@@ -1,7 +1,6 @@
 package com.example.chatappkotlin.domain.models
 
 import com.google.firebase.Timestamp
-
 data class Message(
     val id: String? = null,
     val fromUId: String? = null,

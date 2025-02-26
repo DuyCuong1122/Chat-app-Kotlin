@@ -1,39 +1,37 @@
 package com.example.chatappkotlin.presentation.nav_graph
-
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.chatappkotlin.SplashScreen
 import com.example.chatappkotlin.presentation.HomeView
+import com.example.chatappkotlin.presentation.sign_in_up.AuthViewModel
 import com.example.chatappkotlin.presentation.sign_in_up.SignInView
 import com.example.chatappkotlin.presentation.sign_in_up.SignUpView
 
 @Composable
 fun AppNav() {
-    val nacController = rememberNavController()
+    val navController = rememberNavController()
 
-    NavHost(navController = nacController, startDestination = Route.SplashScreen.route) {
-        composable(route = Route.SplashScreen.route) {
-            SplashScreen(nacController)
-        }
-        composable(route = Route.LoginScreen.route) {
-            SignInView(nacController)
-        }
-        composable(route = Route.HomeScreen.route) {
-            HomeView(nacController)
-        }
-//        composable(route = Route.ProfileScreen.route) {
-//            ProfileScreen()
-//        }
-//        composable(route = Route.ChatScreen.route) {
-//            ChatScreen()
-//        }
-        composable(route = Route.RegisterScreen.route) {
-            SignUpView(nacController)
-        }
-//        composable(route = Route.FriendsScreen.route) {
-//            FriendsScreen()
-//        }
+    NavHost(navController = navController, startDestination = Route.SplashScreen.route) {
+        // Màn hình Splash
+        composable(Route.SplashScreen.route) { SplashScreen(navController) }
+
+        // Màn hình Đăng nhập / Đăng ký
+        composable(Route.LoginScreen.route) { SignInView(navController) }
+        composable(Route.RegisterScreen.route) {
+            val authViewModel: AuthViewModel = viewModel()
+
+            SignUpView(authViewModel,navController) }
+
+        // Màn hình chính
+        composable(Route.HomeScreen.route) { HomeView(navController) }
+
+        // Các màn hình khác (có thể kích hoạt khi cần)
+//        composable(Route.ProfileScreen.route) { ProfileScreen(navController) }
+//        composable(Route.ChatScreen.route) { ChatScreen(navController) }
+//        composable(Route.FriendsScreen.route) { FriendsScreen(navController) }
     }
 }
+

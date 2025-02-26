@@ -2,7 +2,7 @@ import com.google.firebase.Timestamp
 
 data class User(
     val id: String? = null,
-    val name: String? = null,
+    val username: String? = null,
     val email: String? = null,
     val phoneNumber: String? = null,
     val dateOfBirth: Timestamp? = null,
