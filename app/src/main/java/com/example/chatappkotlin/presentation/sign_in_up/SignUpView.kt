@@ -28,6 +28,7 @@ import com.example.chatappkotlin.presentation.sign_in_up.widget.CustomButtonSign
 import com.example.chatappkotlin.presentation.widget.CustomCheckBox
 import com.example.chatappkotlin.presentation.widget.CustomTextField
 import com.example.chatappkotlin.ui.theme.CustomTypography
+import androidx.hilt.navigation.compose.hiltViewModel
 
 //@Preview
 //@Composable
@@ -36,7 +37,8 @@ import com.example.chatappkotlin.ui.theme.CustomTypography
 //}
 
 @Composable
-fun SignUpView(authViewModel: AuthViewModel, navController: NavController) {
+fun SignUpView( navController: NavController) {
+    val authViewModel = hiltViewModel<AuthViewModel>()
     // 🏷 Trạng thái của form
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }

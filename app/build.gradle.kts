@@ -76,6 +76,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.accompanist.drawablepainter)
     testImplementation(libs.junit)
+    implementation( libs.hilt.android.gradle.plugin)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation (libs.androidx.room.runtime)

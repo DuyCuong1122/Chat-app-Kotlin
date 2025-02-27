@@ -1,6 +1,7 @@
 package com.example.chatappkotlin.presentation.nav_graph
+
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -19,11 +20,11 @@ fun AppNav() {
         composable(Route.SplashScreen.route) { SplashScreen(navController) }
 
         // Màn hình Đăng nhập / Đăng ký
-        composable(Route.LoginScreen.route) { SignInView(navController) }
+        navController.popBackStack(Route.LoginScreen.route, inclusive = false)
         composable(Route.RegisterScreen.route) {
-            val authViewModel: AuthViewModel = viewModel()
 
-            SignUpView(authViewModel,navController) }
+            SignUpView(navController)
+        }
 
         // Màn hình chính
         composable(Route.HomeScreen.route) { HomeView(navController) }

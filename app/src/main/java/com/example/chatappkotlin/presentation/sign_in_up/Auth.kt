@@ -32,18 +32,18 @@ class AuthViewModel @Inject constructor(
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val userId = task.result?.user?.uid ?: ""
-                    saveUserToFirestore(userId, email, username)
+                    saveUserToFirestore(email, username)
                 } else {
                     _authState.value = AuthState.Error(task.exception?.message ?: "Đăng ký thất bại!")
                 }
             }
     }
 
-    private fun saveUserToFirestore(userId: String, email: String, username: String) {
-        val user = User(id = userId, email = email, username = username)
+    private fun saveUserToFirestore(email: String, username: String) {
+        val user = User(email = email, username = username)
 
-        firestore.collection("users").document(userId)
-            .set(user)
+        firestore.collection("users")
+            .add(user) // Để Firestore tự tạo document ID
             .addOnSuccessListener {
                 _authState.value = AuthState.Success
             }
@@ -51,4 +51,5 @@ class AuthViewModel @Inject constructor(
                 _authState.value = AuthState.Error("Lỗi khi lưu dữ liệu: ${e.message}")
             }
     }
+
 }
