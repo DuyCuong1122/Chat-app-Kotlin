@@ -20,9 +20,10 @@ fun AppNav() {
         composable(Route.SplashScreen.route) { SplashScreen(navController) }
 
         // Màn hình Đăng nhập / Đăng ký
-        navController.popBackStack(Route.LoginScreen.route, inclusive = false)
+        composable(Route.LoginScreen.route) {
+            SignInView(navController)
+        }
         composable(Route.RegisterScreen.route) {
-
             SignUpView(navController)
         }
 
@@ -35,4 +36,3 @@ fun AppNav() {
 //        composable(Route.FriendsScreen.route) { FriendsScreen(navController) }
     }
 }
-

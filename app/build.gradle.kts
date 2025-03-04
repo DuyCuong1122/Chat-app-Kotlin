@@ -3,9 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.compose.compiler)
-    id("com.google.devtools.ksp")
-
-
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -14,6 +13,8 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
+
     }
 
     composeOptions {
@@ -28,6 +29,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -61,7 +65,7 @@ dependencies {
 
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
-
+    implementation(libs.androidx.hilt.navigation.compose)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.firebase.auth)
@@ -83,7 +87,7 @@ dependencies {
     ksp (libs.androidx.room.compiler)
     implementation(libs.dagger)
     implementation(libs.hilt.android)
-
+    ksp(libs.hilt.android.compiler)
     ksp(libs.hilt.compiler)
 }
 
