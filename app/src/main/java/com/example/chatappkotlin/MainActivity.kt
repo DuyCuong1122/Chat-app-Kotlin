@@ -3,14 +3,15 @@ package com.example.chatappkotlin
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.core.view.WindowCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.example.chatappkotlin.presentation.nav_graph.AppNav
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Ensure this is called before setContent
-//        WindowCompat.setDecorFitsSystemWindows(window, true)
+
         setContent {
             AppNav()
         }

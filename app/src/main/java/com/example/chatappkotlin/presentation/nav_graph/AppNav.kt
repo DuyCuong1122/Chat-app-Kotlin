@@ -7,8 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.chatappkotlin.SplashScreen
 import com.example.chatappkotlin.presentation.HomeView
-import com.example.chatappkotlin.presentation.sign_in_up.AuthViewModel
-import com.example.chatappkotlin.presentation.sign_in_up.SignInView
+ import com.example.chatappkotlin.presentation.sign_in_up.SignInView
 import com.example.chatappkotlin.presentation.sign_in_up.SignUpView
 
 @Composable
