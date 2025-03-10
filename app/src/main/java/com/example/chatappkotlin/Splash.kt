@@ -18,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.chatappkotlin.presentation.nav_graph.Route
+import com.example.chatappkotlin.navigation.Route
 import kotlinx.coroutines.delay
 
 

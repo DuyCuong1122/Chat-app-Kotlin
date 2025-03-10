@@ -23,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.chatappkotlin.R
-import com.example.chatappkotlin.presentation.nav_graph.Route
+import com.example.chatappkotlin.navigation.Route
 import com.example.chatappkotlin.presentation.sign_in_up.widget.CustomButtonSignInUp
 import com.example.chatappkotlin.presentation.widget.CustomTextField
 import com.example.chatappkotlin.ui.theme.CustomTypography

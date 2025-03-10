@@ -54,6 +54,7 @@ android {
 
 }
 dependencies {
+    implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth.ktx)

@@ -37,7 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.chatappkotlin.R
-import com.example.chatappkotlin.domain.models.MessageContent
+import com.example.chatappkotlin.data.models.MessageContent
 import com.example.chatappkotlin.presentation.chat.widget.LeftChatWidget
 import com.example.chatappkotlin.ui.theme.CustomTypography
 

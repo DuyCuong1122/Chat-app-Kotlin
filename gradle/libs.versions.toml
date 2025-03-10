@@ -1,13 +1,13 @@
 [versions]
 accompanistDrawablepainter = "0.31.1-alpha"
-activityCompose = "1.10.0"
+activityCompose = "1.10.1"
 agp = "8.6.1"
-dagger = "2.51.1"
+dagger = "2.55"
 firebaseBom = "33.9.0"
 hiltAndroid = "2.55"
-hiltAndroidCompiler = "2.51.1"
+hiltAndroidCompiler = "2.55"
 hiltAndroidGradlePlugin = "2.55"
-hiltCompiler = "2.48"
+hiltCompiler = "2.55"
 hiltNavigationCompose = "1.2.0"
 kotlin = "2.1.10"
 coreKtx = "1.15.0"
@@ -15,11 +15,12 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
+kotlinStdlibJdk8 = "2.0.21"
 lifecycleRuntimeCompose = "2.8.7"
 material = "1.12.0"
-activity = "1.10.0"
+activity = "1.10.1"
 constraintlayout = "2.2.0"
-navigationCompose = "2.8.6"
+navigationCompose = "2.8.8"
 roomCompiler = "2.6.1"
 roomRuntime = "2.6.1"
 ui = "1.7.7"
@@ -56,6 +57,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlinStdlibJdk8" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }

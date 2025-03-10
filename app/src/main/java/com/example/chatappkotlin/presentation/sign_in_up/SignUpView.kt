@@ -1,18 +1,14 @@
 package com.example.chatappkotlin.presentation.sign_in_up
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.chatappkotlin.R
-import com.example.chatappkotlin.presentation.nav_graph.Route
+import com.example.chatappkotlin.navigation.Route
 import com.example.chatappkotlin.presentation.sign_in_up.widget.CustomButtonSignInUp
 import com.example.chatappkotlin.presentation.widget.CustomCheckBox
 import com.example.chatappkotlin.presentation.widget.CustomTextField
@@ -37,27 +33,40 @@ import androidx.hilt.navigation.compose.hiltViewModel
 //}
 
 @Composable
-fun SignUpView( navController: NavController) {
+
+fun SignUpView(navController: NavController) {
+    val  context = LocalContext.current
     val authViewModel = hiltViewModel<AuthViewModel>()
     // 🏷 Trạng thái của form
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val registerState by authViewModel.authState.collectAsState()
+    var agreeToTerms by remember { mutableStateOf(false) }
 
     // 🛑 Trạng thái lỗi
     var usernameError by remember { mutableStateOf(false) }
     var emailError by remember { mutableStateOf(false) }
     var passwordError by remember { mutableStateOf(false) }
+    val registerState by authViewModel.registerState.collectAsState()
 
-    var enableButton by remember { mutableStateOf(false) }
+    // Kiểm tra lỗi ngay khi giá trị thay đổi
+
+    LaunchedEffect(username, email, password) {
+        usernameError = username.isBlank()
+        emailError = !email.matches(Regex("^[A-Za-z0-9+_.-]+@(.+)$"))
+        passwordError = password.length < 6
+    }
+
+    val isFormValid = !usernameError && !emailError && !passwordError && agreeToTerms
 
     Column(
+
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
-            .padding(start = 24.dp, top = 64.dp, end = 24.dp, bottom = 32.dp)
+            .padding(24.dp)
     ) {
+
         // Nút Back
         BackButton(onBackClick = navController::popBackStack)
         Spacer(modifier = Modifier.height(48.dp))
@@ -68,7 +77,6 @@ fun SignUpView( navController: NavController) {
             style = CustomTypography.SignInUpTitle
         )
         Spacer(modifier = Modifier.height(60.dp))
-
         // Form Đăng Ký
         FormSignUp(
             username = username,
@@ -81,40 +89,48 @@ fun SignUpView( navController: NavController) {
             onPasswordChange = { password = it },
             passwordError = passwordError
         )
+
         Spacer(modifier = Modifier.height(32.dp))
 
-        PoliciesAndTerm(enableButton = enableButton, onCheckedChange = { enableButton = it })
+        // Đồng ý Điều khoản & Chính sách
+        PoliciesAndTerm(
+            enableButton = agreeToTerms,
+            onCheckedChange = { agreeToTerms = it }
+        )
+
         Spacer(modifier = Modifier.height(48.dp))
+
         // Nút Đăng Ký
         CustomButtonSignInUp(
             text = R.string.register,
             onClick = {
-                usernameError = username.isBlank()
-                emailError = !email.matches(Regex("^[A-Za-z0-9+_.-]+@(.+)$"))
-                passwordError = password.length < 6
-
-                if (!usernameError && !emailError && !passwordError) {
-                    authViewModel.signUpMethod(username, email, password)
-                }
+                authViewModel.registerUser(context,username, email, password)
                 navController.navigate(Route.LoginScreen.route)
             },
-            enable = !usernameError && !emailError && !passwordError,
+            enable = isFormValid
         )
+
         Spacer(modifier = Modifier.weight(1f))
+
+        // Chuyển hướng Đăng Nhập
         Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
             Text(
                 text = stringResource(id = R.string.already_have_an_account),
-                style = CustomTypography.Text14W700,
+                style = CustomTypography.Text14W700
             )
+
             Spacer(modifier = Modifier.width(4.dp))
+
             Text(
                 text = stringResource(id = R.string.log_in_now),
                 style = CustomTypography.Text14W700,
+                modifier = Modifier.clickable {
+                    navController.navigate(Route.LoginScreen.route)
+                }
             )
         }
     }
 }
-
 
 @Composable
 fun FormSignUp(

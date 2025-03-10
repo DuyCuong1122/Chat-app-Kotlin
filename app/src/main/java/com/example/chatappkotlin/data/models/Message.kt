@@ -1,4 +1,4 @@
-package com.example.chatappkotlin.domain.models
+package com.example.chatappkotlin.data.models
 
 import com.google.firebase.Timestamp
 data class Message(
