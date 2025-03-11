@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.chatappkotlin.R
 
-import com.example.chatappkotlin.data.repository.AuthRepository
+import com.example.chatappkotlin.data.repository.auth.AuthRepository
 
 import com.piashcse.hilt_mvvm_compose_movie.utils.network.DataState
 
@@ -39,7 +39,7 @@ class AuthViewModel @Inject constructor(
     val loginState = _loginState.asStateFlow()
 
     private val emailPattern = Pattern.compile(
-        "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$"
+        "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
     )
     private fun validateInput(email: String, password: String, name: String? = null): Int? {
         if (name != null && name.isBlank()) return R.string.empty_name

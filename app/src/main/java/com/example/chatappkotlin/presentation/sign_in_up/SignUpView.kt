@@ -104,8 +104,8 @@ fun SignUpView(navController: NavController) {
         CustomButtonSignInUp(
             text = R.string.register,
             onClick = {
-                authViewModel.registerUser(context,username, email, password)
-                navController.navigate(Route.LoginScreen.route)
+                authViewModel.registerUser(context,username, email, password);
+                println("registerState: $registerState")
             },
             enable = isFormValid
         )
